@@ -1,20 +1,21 @@
- Idea
-DormTrack is a comprehensive hostel management platform that 
+# DormTrack
+- DormTrack is a comprehensive hostel management platform that 
 offers automation for room allocation, complaint redressal, mess 
-feedback, event management, and more. It is designed to improve the 
+feedback, event management, and more.
+- It is designed to improve the 
 experience for both students and administrators through an automotive 
 and community focused design
- “DormTrack brings a 360° digital solution to hostel life”
- What it does and Key Features
- •Room Management: Auto-room allocation, roommate matching, room swapping requests
- •Maintenance & Cleaning: Complaint submission and status tracking, scheduled cleaning
- •Laundry & Utility: Machine booking, laundry vendor integration
- •Mess Feedback: Daily food ratings, hygiene feedback, weekly menu view
- •Event & Community Management: Hostel events, announcements, and RSVP system
- •Billing & Fee Reminders: Monthly invoices, payment gateway integration
+ - “DormTrack brings a 360° digital solution to hostel life”
 
+### What it does and Key Features
+- Room Management: Auto-room allocation, roommate matching, room swapping requests
+- Maintenance & Cleaning: Complaint submission and status tracking, scheduled cleaning
+- Laundry & Utility: Machine booking, laundry vendor integration
+- Mess Feedback: Daily food ratings, hygiene feedback, weekly menu view
+- Event & Community Management: Hostel events, announcements, and RSVP system
+- Billing & Fee Reminders: Monthly invoices, payment gateway integration
 
- Student Frontend Routes (Next.js App Router)
+### Student Frontend Routes (Next.js App Router)
 /                              # Landing/Login page
 /auth/register                 # Registration page
 /dashboard                     # Student dashboard home
@@ -35,3 +36,26 @@ and community focused design
 /marketplace/my-listings       # Manage my listings
 /marketplace/create            # Create new listing
 /marketplace/[id]              # Individual listing details
+
+## Getting Started
+1. Clone the repository
+
+```
+git clone https://github.com/CubeStar1/dormt-track-frontend.git
+```
+
+2. Install dependencies
+
+```
+npm install
+```
+
+3. Run the development server
+
+```
+npm run dev
+```
+
+4. Open the browser and navigate to `http://localhost:3000`
+
+
