@@ -51,7 +51,7 @@ and community focused design
 1. Clone the repository
 
 ```
-git clone https://github.com/CubeStar1/dormt-track-frontend.git
+git clone https://github.com/CubeStar1/dorm-track-frontend.git
 ```
 
 2. Install dependencies
