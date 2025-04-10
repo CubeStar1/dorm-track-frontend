@@ -16,26 +16,36 @@ and community focused design
 - Billing & Fee Reminders: Monthly invoices, payment gateway integration
 
 ### Student Frontend Routes (Next.js App Router)
-/                              # Landing/Login page
-/auth/register                 # Registration page
-/dashboard                     # Student dashboard home
-/profile                       # User profile management
-/rooms                         # Room availability and map view
-/rooms/book                    # Room booking interface
-/rooms/[id]                    # Individual room details
-/maintenance/new               # Submit maintenance requests
-/maintenance                   # View my maintenance requests
-/maintenance/[id]              # Track specific request details
-/mess                          # Mess menu and feedback form
-/mess/history                  # Past feedback history
-/laundry                       # Laundry booking system
-/laundry/history               # Past laundry bookings
-/events                        # Event listing
-/events/[id]                   # Event details and RSVP
-/marketplace                   # Buy/sell marketplace
-/marketplace/my-listings       # Manage my listings
-/marketplace/create            # Create new listing
-/marketplace/[id]              # Individual listing details
+ app/ \
+├── page.tsx              ||    Landing/Login page \
+├── auth/ \
+│   └── register/             ||    Registration page \
+├── dashboard/ \
+│   └── page.tsx              ||    Student dashboard home \
+├── profile/ \
+│   └── page.tsx              ||    User profile management \
+├── rooms/ \
+│   ├── page.tsx              ||    Room availability and map view \
+│   ├── book/                 ||    Room booking interface \
+│   └── [id]/                 ||    Individual room details \
+├── maintenance/ \
+│   ├── page.tsx              ||    View my maintenance requests \
+│   ├── new/                  ||    Submit maintenance requests \
+│   └── [id]/                 ||    Track specific request details \
+├── mess/ \
+│   ├── page.tsx              ||    Mess menu and feedback form \
+│   └── history/              ||    Past feedback history \
+├── laundry/ \
+│   ├── page.tsx              ||    Laundry booking system \
+│   └── history/              ||    Past laundry bookings \
+├── events/ \
+│   ├── page.tsx              ||    Event listing \
+│   └── [id]/                 Event details and RSVP \
+└── marketplace/ \
+    ├── page.tsx              Buy/sell marketplace \
+    ├── my-listings/          ||    Manage my listings \
+    ├── create/               ||    Create new listing \
+    └── [id]/                 ||    Individual listing details \
 
 ## Getting Started
 1. Clone the repository
