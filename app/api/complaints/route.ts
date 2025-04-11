@@ -15,10 +15,10 @@ export async function GET() {
       );
     }
 
-    // Get student record
+    // Get student record with room info
     const { data: student } = await supabase
       .from('students')
-      .select('user_id, hostel_id')
+      .select('user_id, hostel_id, room_id')
       .eq('user_id', session.user.id)
       .single();
 
@@ -38,6 +38,12 @@ export async function GET() {
           id,
           name,
           code
+        ),
+        room:rooms(
+          id,
+          room_number,
+          block,
+          floor
         ),
         assigned_staff:users(
           id,
@@ -75,10 +81,10 @@ export async function POST(request: Request) {
       );
     }
 
-    // Get student record
+    // Get student record with room info
     const { data: student } = await supabase
       .from('students')
-      .select('user_id, hostel_id')
+      .select('user_id, hostel_id, room_id')
       .eq('user_id', session.user.id)
       .single();
 
@@ -98,6 +104,7 @@ export async function POST(request: Request) {
       .insert({
         hostel_id: student.hostel_id,
         student_id: student.user_id,
+        room_id: body.room_id || student.room_id, // Use provided room_id or student's room_id
         complaint_type: body.complaint_type,
         description: body.description,
         severity: body.severity,
@@ -109,6 +116,12 @@ export async function POST(request: Request) {
           id,
           name,
           code
+        ),
+        room:rooms(
+          id,
+          room_number,
+          block,
+          floor
         ),
         assigned_staff:users(
           id,

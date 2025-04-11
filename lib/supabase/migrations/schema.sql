@@ -148,6 +148,7 @@ create table public.complaints (
     id uuid default uuid_generate_v4() primary key,
     hostel_id uuid references public.hostels not null,
     student_id uuid references public.students(user_id) not null,
+    room_id uuid references public.rooms,
     complaint_type text not null, -- 'ragging', 'harassment', 'facilities', 'mess', 'other'
     description text not null,
     severity text default 'medium', -- 'low', 'medium', 'high'
