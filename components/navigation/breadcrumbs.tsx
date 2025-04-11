@@ -18,66 +18,60 @@ const routes = {
     name: "Home",
     path: "/",
   },
+  "/dashboard": {
+    name: "Dashboard",
+    path: "/dashboard",
+    description: "Overview of your hostel life",
+  },
+  "/my-room": {
+    name: "My Room",
+    path: "/my-room",
+    description: "View your room details",
+  },
   "/rooms": {
-    name: "Rooms",
+    name: "Room Booking",
     path: "/rooms",
-    description: "View and manage rooms",
+    description: "Browse and manage rooms",
+  },
+  "/maintenance": {
+    name: "Maintenance",
+    path: "/maintenance",
+    description: "Maintenance requests",
   },
   "/complaints": {
     name: "Complaints",
     path: "/complaints",
     description: "View and manage complaints",
   },
-  "/maintenance": {
-    name: "Maintenance",
-    path: "/maintenance",
-    description: "View and manage maintenance requests",
+  "/mess": {
+    name: "Mess Menu",
+    path: "/mess",
+    description: "Mess menu and feedback",
   },
-  "/labelling": {
-    name: "Data Labelling",
-    path: "/labelling",
-    description: "Manual data labelling",
+  "/events": {
+    name: "Events",
+    path: "/events",
+    description: "Hostel events and activities",
   },
-  "/zsl": {
-    name: "Zero-Shot Learning",
-    path: "/zsl",
-    description: "Zero-shot learning models",
-    subRoutes: {
-      "/zsl/deberta": {
-        name: "DeBERTa Model",
-        path: "/zsl/deberta",
-        description: "DeBERTa-based classification",
-      },
-      "/zsl/codebert": {
-        name: "CodeBERT Model",
-        path: "/zsl/codebert",
-        description: "CodeBERT-based classification",
-      }
-    }
+  "/laundry": {
+    name: "Laundry",
+    path: "/laundry",
+    description: "Laundry services",
   },
-  "/random-forest": {
-    name: "Random Forest",
-    path: "/random-forest",
-    description: "Random Forest classification",
+  "/marketplace": {
+    name: "Marketplace",
+    path: "/marketplace",
+    description: "Buy and sell items",
+  },
+  "/profile": {
+    name: "Profile",
+    path: "/profile",
+    description: "Manage your profile",
   },
   "/settings": {
     name: "Settings",
     path: "/settings",
-    description: "System configuration",
-    subRoutes: {
-      "/settings/analysis": {
-        name: "Analysis Configuration",
-        path: "/settings/analysis",
-      },
-      "/settings/scanning": {
-        name: "Scanning Parameters",
-        path: "/settings/scanning",
-      },
-      "/settings/thresholds": {
-        name: "Detection Thresholds",
-        path: "/settings/thresholds",
-      }
-    }
+    description: "Account settings"
   }
 }
 
