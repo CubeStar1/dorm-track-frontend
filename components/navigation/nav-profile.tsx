@@ -30,6 +30,22 @@ export function NavProfile({ user }: { user: any }) {
       router.push("/signin");
     });
   };
+
+  if (!user) {
+    return (
+      <SidebarMenu>
+        <SidebarMenuItem>
+          <div className="h-9 w-9">
+            <div className="h-full w-full animate-pulse rounded-full bg-muted" />
+          </div>
+          <div className="grid flex-1 gap-1">
+            <div className="h-4 w-24 animate-pulse rounded-md bg-muted" />
+            <div className="h-3 w-32 animate-pulse rounded-md bg-muted" />
+          </div>
+        </SidebarMenuItem>
+      </SidebarMenu>
+    );
+  }
   return (
     <SidebarMenu>
       <SidebarMenuItem>

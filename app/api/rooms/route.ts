@@ -15,6 +15,46 @@ export async function GET(request: Request) {
     const hostelId = searchParams.get('hostelId');
 
     const supabase = await createSupabaseServer();
+
+    // Get the user's session
+    const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+
+    if (sessionError || !session) {
+      return NextResponse.json(
+        { error: 'Unauthorized access' },
+        { status: 401 }
+      );
+    }
+
+    // Get user's institution ID
+    const { data: userData, error: userError } = await supabase
+      .from('users')
+      .select('institution_id')
+      .eq('id', session.user.id)
+      .single();
+
+    if (userError || !userData) {
+      return NextResponse.json(
+        { error: 'Unauthorized access' },
+        { status: 401 }
+      );
+    }
+
+    // First get the hostels for this institution
+    const { data: hostels, error: hostelsError } = await supabase
+      .from('hostels')
+      .select('id')
+      .eq('institution_id', userData.institution_id);
+
+    if (hostelsError) {
+      return NextResponse.json(
+        { error: 'Failed to fetch hostels' },
+        { status: 500 }
+      );
+    }
+
+    const hostelIds = hostels.map(h => h.id);
+
     let query = supabase
       .from('rooms')
       .select(`
@@ -29,9 +69,11 @@ export async function GET(request: Request) {
           contact_email,
           contact_phone,
           total_blocks,
-          total_rooms
+          total_rooms,
+          institution_id
         )
-      `);
+      `)
+      .in('hostel_id', hostelIds);
 
     if (block) query = query.eq('block', block);
     if (floor) query = query.eq('floor', parseInt(floor));

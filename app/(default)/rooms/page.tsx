@@ -12,9 +12,7 @@ import { roomService, RoomFilters as RoomFilterType } from '@/lib/api/services/r
 export default function RoomsPage() {
   const [showMap, setShowMap] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
-  const [filters, setFilters] = useState<RoomFilterType>({
-    status: 'available',
-  });
+  const [filters, setFilters] = useState<RoomFilterType>({});
 
   const { data: rooms, isLoading } = useQuery({
     queryKey: ['rooms', filters],

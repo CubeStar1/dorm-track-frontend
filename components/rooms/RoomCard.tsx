@@ -9,7 +9,7 @@ interface RoomCardProps {
 
 export default function RoomCard({ room }: RoomCardProps) {
   return (
-    <Link href={`/rooms/${room.room_number}`}>
+    <Link href={`/rooms/${room.id}`}>
       <div className="group bg-white border rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
         <div className="relative aspect-[4/3]">
           {room.images?.[0] ? (

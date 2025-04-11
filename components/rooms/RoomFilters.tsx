@@ -56,7 +56,7 @@ export default function RoomFilters({ onClose, initialFilters, onApply }: RoomFi
   };
 
   const handleClear = () => {
-    const clearedFilters: Filters = { status: 'available' };
+    const clearedFilters: Filters = {};
     setFilters(clearedFilters);
     onApply(clearedFilters);
     onClose();

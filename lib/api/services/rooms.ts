@@ -14,6 +14,17 @@ export interface Hostel {
   total_rooms: number;
 }
 
+export interface Roommate {
+  id: string;
+  full_name: string;
+  email: string;
+  phone?: string;
+  student_id: string;
+  department?: string;
+  year_of_study?: number;
+  is_you: boolean;
+}
+
 export interface Room {
   id: string;
   hostel_id: string;
@@ -29,6 +40,7 @@ export interface Room {
   price: number;
   description: string;
   images: string[];
+  roommates?: Roommate[];
 }
 
 export interface RoomFilters {
@@ -55,8 +67,13 @@ export const roomService = {
     return response.data;
   },
 
-  async getRoom(roomNumber: string): Promise<Room> {
-    const response: AxiosResponse<Room> = await api.get(`/rooms/${roomNumber}`);
+  async getRoom(roomId: string): Promise<Room> {
+    const response: AxiosResponse<Room> = await api.get(`/rooms/${roomId}`);
+    return response.data;
+  },
+
+  async getMyRoom(): Promise<Room> {
+    const response: AxiosResponse<Room> = await api.get('/rooms/my-room');
     return response.data;
   },
 
