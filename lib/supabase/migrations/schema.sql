@@ -227,6 +227,47 @@ create table public.event_registrations (
     constraint valid_registration_status check (status in ('registered', 'attended', 'cancelled'))
 );
 
+-- Marketplace items table
+create table public.marketplace_items (
+    id uuid default uuid_generate_v4() primary key,
+    seller_id uuid references public.students(user_id) not null,
+    title text not null,
+    description text not null,
+    price decimal(10,2) not null,
+    condition text not null, -- 'new', 'like_new', 'good', 'fair', 'poor'
+    category text not null, -- 'electronics', 'furniture', 'books', 'clothing', 'other'
+    images text[] default '{}',
+    status text default 'available', -- 'available', 'reserved', 'sold'
+    created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+    updated_at timestamp with time zone default timezone('utc'::text, now()) not null,
+    constraint valid_condition check (condition in ('new', 'like_new', 'good', 'fair', 'poor')),
+    constraint valid_category check (category in ('electronics', 'furniture', 'books', 'clothing', 'other')),
+    constraint valid_status check (status in ('available', 'reserved', 'sold'))
+);
+
+-- Marketplace transactions table
+create table public.marketplace_transactions (
+    id uuid default uuid_generate_v4() primary key,
+    item_id uuid references public.marketplace_items not null,
+    buyer_id uuid references public.students(user_id) not null,
+    seller_id uuid references public.students(user_id) not null,
+    amount decimal(10,2) not null,
+    status text default 'pending', -- 'pending', 'completed', 'cancelled'
+    created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+    updated_at timestamp with time zone default timezone('utc'::text, now()) not null,
+    constraint valid_status check (status in ('pending', 'completed', 'cancelled'))
+);
+
+-- Marketplace messages table
+create table public.marketplace_messages (
+    id uuid default uuid_generate_v4() primary key,
+    item_id uuid references public.marketplace_items not null,
+    sender_id uuid references public.students(user_id) not null,
+    receiver_id uuid references public.students(user_id) not null,
+    message text not null,
+    created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+    updated_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
 
 -- Functions for institution-level operations
 create or replace function get_user_institution_id()
