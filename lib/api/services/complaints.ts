@@ -1,4 +1,3 @@
-
 import { Room } from '@/lib/api/services/rooms';
 
 export type ComplaintType = 'ragging' | 'harassment' | 'facilities' | 'mess' | 'other';
@@ -16,11 +15,18 @@ export interface Complaint {
   is_anonymous: boolean;
   student_id: string;
   hostel_id: string;
+  room_id?: string;
   assigned_to?: string;
   resolution_notes?: string;
   hostel?: {
     id: string;
     name: string;
+  };
+  room?: {
+    id: string;
+    room_number: string;
+    block: string;
+    floor: number;
   };
   assigned_staff?: {
     id: string;
@@ -34,6 +40,7 @@ export interface CreateComplaintPayload {
   description: string;
   severity: ComplaintSeverity;
   is_anonymous: boolean;
+  room_id?: string;
 }
 
 export interface UpdateComplaintPayload {
