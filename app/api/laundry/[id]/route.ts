@@ -3,9 +3,10 @@ import { NextResponse } from 'next/server';
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const {id} = await params;
     const supabase = await createSupabaseServer();
 
     const { data: { session }, error: sessionError } = await supabase.auth.getSession();
@@ -48,7 +49,7 @@ export async function GET(
           code
         )
       `)
-      .eq('id', params.id)
+      .eq('id', id)
       .eq('hostel_id', student.hostel_id)
       .single();
 
@@ -77,9 +78,11 @@ export async function GET(
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const {id} = await params;
+
     const supabase = await createSupabaseServer();
 
     const { data: { session }, error: sessionError } = await supabase.auth.getSession();
@@ -108,7 +111,7 @@ export async function PATCH(
     const { data: currentSlot, error: slotError } = await supabase
       .from('laundry_slots')
       .select('*')
-      .eq('id', params.id)
+      .eq('id', id)
       .eq('hostel_id', student.hostel_id)
       .single();
 
@@ -134,7 +137,7 @@ export async function PATCH(
         status: 'available',
         student_id: null
       })
-      .eq('id', params.id)
+      .eq('id', id)
       .select(`
         *,
         student:students(user_id, student_id)

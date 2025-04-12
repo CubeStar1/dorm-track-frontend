@@ -7,9 +7,10 @@ interface EventRegistration {
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const {id} = await params;
     const supabase = await createSupabaseServer();
 
     const { data: { session }, error: sessionError } = await supabase.auth.getSession();
@@ -52,7 +53,7 @@ export async function GET(
           email
         )
       `)
-      .eq('id', params.id)
+      .eq('id', id)
       .eq('institution_id', user.institution_id)
       .single();
 
@@ -96,9 +97,10 @@ export async function GET(
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const {id} = await params;
     const supabase = await createSupabaseServer();
 
     const { data: { session }, error: sessionError } = await supabase.auth.getSession();
@@ -158,7 +160,7 @@ export async function PATCH(
         category,
         status
       })
-      .eq('id', params.id)
+      .eq('id', id)
       .eq('institution_id', user.institution_id)
       .select(`
         *,

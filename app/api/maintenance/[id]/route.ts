@@ -3,9 +3,10 @@ import { NextResponse } from 'next/server';
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const {id} = await params;
     const supabase = await createSupabaseServer();
     
     // Get the current user's session
@@ -26,7 +27,7 @@ export async function GET(
         room:rooms(id, room_number),
         assigned_to:users(id, full_name, email)
       `)
-      .eq('id', params.id)
+      .eq('id', id)
       .single();
 
     if (requestError) {
@@ -56,9 +57,11 @@ export async function GET(
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const {id} = await params;
+
     const supabase = await createSupabaseServer();
     
     // Get the current user's session
@@ -76,7 +79,7 @@ export async function PATCH(
     const { data: existingRequest, error: requestError } = await supabase
       .from('maintenance_requests')
       .select('student_id')
-      .eq('id', params.id)
+      .eq('id', id)
       .single();
 
     if (requestError || !existingRequest) {
@@ -98,7 +101,7 @@ export async function PATCH(
     const { error: updateError } = await supabase
       .from('maintenance_requests')
       .update({ status })
-      .eq('id', params.id);
+      .eq('id', id);
 
     if (updateError) {
       return NextResponse.json(

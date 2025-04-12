@@ -3,9 +3,10 @@ import { NextResponse } from 'next/server';
 
 export async function POST(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const {id} = await params;
     const supabase = await createSupabaseServer();
 
     const { data: { session }, error: sessionError } = await supabase.auth.getSession();
@@ -34,7 +35,7 @@ export async function POST(
     const { data: event, error: eventError } = await supabase
       .from('events')
       .select('*')
-      .eq('id', params.id)
+      .eq('id', id)
       .eq('institution_id', student.institution_id)
       .single();
 
@@ -57,7 +58,7 @@ export async function POST(
     const { count } = await supabase
       .from('event_registrations')
       .select('*', { count: 'exact', head: true })
-      .eq('event_id', params.id)
+      .eq('event_id', id)
       .eq('status', 'registered');
 
     const registrationCount = count ?? 0;
@@ -72,7 +73,7 @@ export async function POST(
     const { data: existingRegistration } = await supabase
       .from('event_registrations')
       .select('id, status')
-      .eq('event_id', params.id)
+      .eq('event_id', id)
       .eq('student_id', session.user.id)
       .single();
 
@@ -102,7 +103,7 @@ export async function POST(
       const result = await supabase
         .from('event_registrations')
         .insert({
-          event_id: params.id,
+          event_id: id,
           student_id: session.user.id,
           status: 'registered'
         })
@@ -131,9 +132,11 @@ export async function POST(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const {id} = await params;
+
     const supabase = await createSupabaseServer();
 
     const { data: { session }, error: sessionError } = await supabase.auth.getSession();
@@ -148,7 +151,7 @@ export async function DELETE(
     const { data: registration, error: registrationError } = await supabase
       .from('event_registrations')
       .update({ status: 'cancelled' })
-      .eq('event_id', params.id)
+      .eq('event_id', id)
       .eq('student_id', session.user.id)
       .select()
       .single();

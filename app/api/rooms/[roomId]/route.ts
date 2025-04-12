@@ -6,9 +6,10 @@ const DEFAULT_ROOM_IMAGE = 'https://images.unsplash.com/photo-1578683010236-d716
 
 export async function GET(
   request: Request,
-  { params }: { params: { roomId: string } }
+  { params }: { params: Promise<{ roomId: string }> }
 ) {
   try {
+    const {roomId} = await params;
     const supabase = await createSupabaseServer();
 
     // Get the user's session
@@ -68,7 +69,7 @@ export async function GET(
           institution_id
         )
       `)
-      .eq('id', params.roomId)
+      .eq('id', roomId)
       .in('hostel_id', hostelIds)
       .single();
 

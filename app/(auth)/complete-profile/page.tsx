@@ -25,6 +25,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import React, { Suspense } from 'react';
 
 const formSchema = z.object({
   fullName: z.string().min(1, 'Full name is required'),
@@ -40,7 +41,7 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-export default function CompleteProfilePage() {
+const CompleteProfilePage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const nextUrl = searchParams.get('next') || '/dashboard';
@@ -291,4 +292,13 @@ export default function CompleteProfilePage() {
       </div>
     </div>
   );
-} 
+};
+
+// Wrap the component in Suspense
+const CompleteProfileWrapper = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <CompleteProfilePage />
+  </Suspense>
+);
+
+export default CompleteProfileWrapper; 
