@@ -48,35 +48,41 @@ export function Hero() {
         </p>
         
         <div className="mt-8 flex items-center justify-center gap-4 sm:mt-10">
-          <ShimmerButton 
-            className="flex items-center gap-2 px-6 py-3 text-base sm:text-lg"
-            background="linear-gradient(to right, #0070F3, #38bdf8)"
-          >
-            <span className="whitespace-pre-wrap text-center font-medium leading-none tracking-tight text-white">
-              Get started
-            </span>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 sm:w-5 sm:h-5" />
-          </ShimmerButton>
-          <div className="block dark:hidden">
+          <Link href="/admin/dashboard">
             <ShimmerButton 
               className="flex items-center gap-2 px-6 py-3 text-base sm:text-lg"
-              background="linear-gradient(to right, #7928CA, #FF0080)"
+              background="linear-gradient(to right, #0070F3, #38bdf8)"
             >
               <span className="whitespace-pre-wrap text-center font-medium leading-none tracking-tight text-white">
-                View features
+                Go to Dashboard
               </span>
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 sm:w-5 sm:h-5" />
             </ShimmerButton>
-          </div>
-          <div className="hidden dark:block">
-            <ShimmerButton 
-              className="flex items-center gap-2 px-6 py-3 text-base sm:text-lg"
-              background="linear-gradient(to right, rgba(255,255,255,0.1), rgba(255,255,255,0.05))"
-            >
-              <span className="whitespace-pre-wrap text-center font-medium leading-none tracking-tight text-white/90">
-                View features
-              </span>
-            </ShimmerButton>
-          </div>
+          </Link>
+          <Link href="/rooms">
+            <div className="block dark:hidden">
+              <ShimmerButton 
+                className="flex items-center gap-2 px-6 py-3 text-base sm:text-lg"
+                background="linear-gradient(to right, #7928CA, #FF0080)"
+              >
+                <span className="whitespace-pre-wrap text-center font-medium leading-none tracking-tight text-white">
+                  View Pricing
+                </span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 sm:w-5 sm:h-5" />
+              </ShimmerButton>
+            </div>
+            <div className="hidden dark:block">
+              <ShimmerButton 
+                className="flex items-center gap-2 px-6 py-3 text-base sm:text-lg"
+                background="linear-gradient(to right, rgba(255,255,255,0.1), rgba(255,255,255,0.05))"
+              >
+                <span className="whitespace-pre-wrap text-center font-medium leading-none tracking-tight text-white/90">
+                  View Features
+                </span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 sm:w-5 sm:h-5" />
+              </ShimmerButton>
+            </div>
+          </Link>
         </div>
       </motion.div>
 
