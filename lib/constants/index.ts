@@ -1,4 +1,4 @@
-export const protectedPaths = [ "/", "/chat",
+export const protectedPaths = [ "/chat",
     "/dashboard",
     "/complete-profile",
     ];
