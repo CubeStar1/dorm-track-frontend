@@ -105,13 +105,13 @@ export default function CompleteProfilePage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 to-white py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-2xl shadow-lg border border-gray-100">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-sky-50 to-background py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8 bg-card p-10 rounded-2xl shadow-lg border border-border">
         <div className="space-y-4">
-          <h2 className="text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="text-center text-3xl font-extrabold text-foreground">
             Complete Your Profile
           </h2>
-          <p className="text-center text-sm text-gray-600">
+          <p className="text-center text-sm text-muted-foreground">
             Please provide your details to complete the registration
           </p>
         </div>
@@ -124,12 +124,12 @@ export default function CompleteProfilePage() {
                 name="fullName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-gray-700">Full Name</FormLabel>
+                    <FormLabel>Full Name</FormLabel>
                     <FormControl>
                       <Input 
                         placeholder="John Doe" 
                         {...field}
-                        className="rounded-xl h-11" 
+                        className="rounded-lg h-11" 
                       />
                     </FormControl>
                     <FormMessage />
@@ -143,12 +143,12 @@ export default function CompleteProfilePage() {
                   name="phone"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-gray-700">Phone Number</FormLabel>
+                      <FormLabel>Phone Number</FormLabel>
                       <FormControl>
                         <Input 
                           placeholder="+1234567890" 
                           {...field}
-                          className="rounded-xl h-11" 
+                          className="rounded-lg h-11" 
                         />
                       </FormControl>
                       <FormMessage />
@@ -161,13 +161,13 @@ export default function CompleteProfilePage() {
                   name="gender"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-gray-700">Gender</FormLabel>
+                      <FormLabel>Gender</FormLabel>
                       <Select
                         onValueChange={field.onChange}
                         value={field.value}
                       >
                         <FormControl>
-                          <SelectTrigger className="rounded-xl h-11">
+                          <SelectTrigger className="rounded-lg h-11">
                             <SelectValue placeholder="Select gender" />
                           </SelectTrigger>
                         </FormControl>
@@ -188,14 +188,14 @@ export default function CompleteProfilePage() {
                 name="institutionId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-gray-700">Institution</FormLabel>
+                    <FormLabel>Institution</FormLabel>
                     <Select
                       disabled={isLoadingInstitutions}
                       onValueChange={field.onChange}
                       value={field.value}
                     >
                       <FormControl>
-                        <SelectTrigger className="rounded-xl h-11">
+                        <SelectTrigger className="rounded-lg h-11">
                           <SelectValue placeholder="Select your institution" />
                         </SelectTrigger>
                       </FormControl>
@@ -218,12 +218,12 @@ export default function CompleteProfilePage() {
                   name="studentId"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-gray-700">Student ID</FormLabel>
+                      <FormLabel>Student ID</FormLabel>
                       <FormControl>
                         <Input 
                           placeholder="1RV20CS001" 
                           {...field}
-                          className="rounded-xl h-11" 
+                          className="rounded-lg h-11" 
                         />
                       </FormControl>
                       <FormMessage />
@@ -236,13 +236,13 @@ export default function CompleteProfilePage() {
                   name="yearOfStudy"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-gray-700">Year of Study</FormLabel>
+                      <FormLabel>Year of Study</FormLabel>
                       <Select
                         onValueChange={(value) => field.onChange(parseInt(value))}
                         value={field.value.toString()}
                       >
                         <FormControl>
-                          <SelectTrigger className="rounded-xl h-11">
+                          <SelectTrigger className="rounded-lg h-11">
                             <SelectValue placeholder="Select year" />
                           </SelectTrigger>
                         </FormControl>
@@ -265,12 +265,12 @@ export default function CompleteProfilePage() {
                 name="department"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-gray-700">Department</FormLabel>
+                    <FormLabel>Department</FormLabel>
                     <FormControl>
                       <Input 
                         placeholder="Computer Science" 
                         {...field}
-                        className="rounded-xl h-11" 
+                        className="rounded-lg h-11" 
                       />
                     </FormControl>
                     <FormMessage />
@@ -281,7 +281,7 @@ export default function CompleteProfilePage() {
 
             <Button
               type="submit"
-              className="w-full bg-indigo-600 hover:bg-indigo-700 rounded-xl h-11 mt-8"
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg h-11 mt-8"
               disabled={isSubmitting || isLoadingInstitutions}
             >
               {isSubmitting ? 'Completing...' : 'Complete Registration'}
